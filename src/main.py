@@ -1,31 +1,6 @@
-import os
 from pathlib import Path
 
-import ffmpeg
-
-
-def is_mp4(fullPath: Path) -> bool:
-    try:
-        probe = ffmpeg.probe(fullPath)
-        return probe['format']['format_name'] == 'mov,mp4,m4a,3gp,3g2,mj2'
-    except ffmpeg.Error:
-        return False
-
-
-def extract_mp4_to_wav(mp4FullPath: Path) -> None:
-    try:
-        (
-            ffmpeg
-            .input(mp4FullPath)
-            .output(mp4FullPath.stem + ".wav", format='wav', acodec='pcm_s16le', ar='44100', ac=2)
-            .run()
-        )
-
-    except ffmpeg.Error as e:
-        print(f'Error extracting audio: {e}')
-    os.system(
-        f"ffmpeg -i {mp4FullPath} -vn -acodec pcm_s16le -ar 44100 -ac 2 wav/{mp4FullPath.stem}.wav"
-    )
+from MovieToSound import extract_mp4_to_wav, is_mp4
 
 
 def main() -> None:
