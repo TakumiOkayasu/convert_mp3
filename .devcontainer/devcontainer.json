@@ -4,12 +4,13 @@
 	"dockerComposeFile": "compose.yaml",
 	"service": "app",
 	"workspaceFolder": "/workspace",
-	"postCreateCommand": "pip install --upgrade pip && pip install -r /workspace/requirements.txt",
+	"postCreateCommand": "/bin/bash .devcontainer/scripts/postCreateCommand.sh",
 	"containerEnv": {
 		"shell": "/bin/bash"
 	},
 	"mounts": [
-		"source=${localEnv:HOME}/.ssh,target=/home/{containerEnv:USER}/.ssh,type=bind,consistency=cached"
+		"source=${localEnv:HOME}/.ssh,target=/home/{containerEnv:USER}/.ssh,type=mount,consistency=cached",
+		"source=${localEnv:HOME}/.shell_aliases,target=/home/{containerEnv:USER}/.bash_aliases,type=mount,consistency=cached"
 	],
 	"customizations": {
 		"vscode": {

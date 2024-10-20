@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     sudo \
     ssh \
+    ffmpeg \
     build-essential \
     ca-certificates \
     && apt-get clean \
