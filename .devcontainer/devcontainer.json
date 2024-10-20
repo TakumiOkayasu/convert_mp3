@@ -1,0 +1,23 @@
+{
+	"name": "convert mp3 to wav",
+	"remoteUser": "vscode",
+	"dockerComposeFile": "compose.yaml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"postCreateCommand": "pip install --upgrade pip && pip install -r /workspace/requirements.txt",
+	"containerEnv": {
+		"shell": "/bin/bash"
+	},
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/{containerEnv:USER}/.ssh,type=bind,consistency=cached"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"charliermarsh.ruff",
+				"eamodio.gitlens"
+			]
+		}
+	}
+}
