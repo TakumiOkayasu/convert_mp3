@@ -1,6 +1,12 @@
+import os
+
 
 def main() -> None:
-	return
+    # mp4 -> wav
+    os.system(
+        "ffmpeg -i input_video.mp4 -vn -acodec pcm_s16le -ar 44100 -ac 2 output_audio.wav"
+    )
+
 
 if __name__ == "main":
-	main()
+    main()
