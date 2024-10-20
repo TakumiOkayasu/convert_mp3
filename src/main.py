@@ -1,6 +1,10 @@
 import os
 
 
+def convert_mp4_to_wav() -> None:
+    pass
+
+
 def main() -> None:
     # mp4 -> wav
     os.system(
