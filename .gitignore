@@ -1,4 +1,6 @@
 .DS_Store
+*.mp4
+*.wav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -39,7 +41,6 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-tests/mp4/*
 htmlcov/
 .tox/
 .nox/
