@@ -3,7 +3,6 @@ import shutil
 from numpy import fromstring, int16
 import speech_recognition as sr
 
-# 音声ファイルの分割
 import wave
 import math
 import struct
