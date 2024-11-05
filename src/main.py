@@ -1,10 +1,10 @@
 
 from pathlib import Path
-from MovieToSound import extract_mp4_to_wav
+from SoundToText import mp4_to_text
 
 
 def main() -> None:
-    extract_mp4_to_wav(Path.cwd() / Path("tests/mp4/AKE100720.mp4"))
+    mp4_to_text(Path.cwd() / Path("tests/mp4/動画視聴本講義-01.mp4"))
 
 
 if __name__ == "main":
