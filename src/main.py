@@ -1,16 +1,10 @@
-from pathlib import Path
 
-from MovieToSound import extract_mp4_to_wav, is_mp4
+from pathlib import Path
+from MovieToSound import extract_mp4_to_wav
 
 
 def main() -> None:
-    mp4Path = Path("test.mp4")
-
-    if not is_mp4(mp4Path):
-        print(f"{mp4Path} is NOT mp4 file.")
-        return
-
-    extract_mp4_to_wav(mp4FullPath=mp4Path)
+    extract_mp4_to_wav(Path.cwd() / Path("tests/mp4/AKE100720.mp4"))
 
 
 if __name__ == "main":
