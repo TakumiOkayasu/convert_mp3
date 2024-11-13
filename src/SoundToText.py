@@ -86,13 +86,13 @@ def cut_wavs_str(outf_list):
 
 
 # mp4からwavへの変換から音声のテキスト変換まで
-def mp4_to_text(mp4f):
+def mp4_to_text(mp4file):
     # 出力ディレクトリ
     (Path.cwd() / Path('output/cut_wav/')).mkdir(exist_ok=True)
     print("処理を開始します\n音声ファイルへ変換")
 
     # 音声ファイルへの変換
-    wav_file = extract_mp4_to_wav(mp4f)
+    wav_file = extract_mp4_to_wav(mp4file)
     print("音声ファイルの分割")
     # 音声ファイルの分割(デフォルト30秒)
     cut_wavs = cut_wav(wav_file)
@@ -101,7 +101,7 @@ def mp4_to_text(mp4f):
     out_text = cut_wavs_str(cut_wavs)
 
     # テキストファイルへの入力
-    mp4f_name = os.path.basename(mp4f)
+    mp4f_name = os.path.basename(mp4file)
     txt_file = 'output/' + mp4f_name.replace('.mp4', '.txt')
     print('テキスト出力')
 
