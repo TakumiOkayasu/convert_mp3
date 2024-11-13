@@ -5,15 +5,19 @@ import pytest
 
 
 def test_extract_audio_to_wav():
-    input_mp4 = Path.cwd() / Path('tests/mp4/動画視聴本講義-01.mp4')  # テスト用のMP4ファイル
+    input_mp4s = Path.cwd().glob('tests/mp4/*.mp4')  # テスト用のMP4ファイル
 
-    # テスト用MP4ファイルが存在するかをチェック（存在しなければスキップ）
-    if not input_mp4.exists():
-        pytest.skip(f"{input_mp4} が存在しないため、テストをスキップします")
+    if not input_mp4s:
+        pytest.skip("テスト用のMP4ファイルが存在しないため、テストをスキップします")
 
-    result = extract_mp4_to_wav(input_mp4)
+    for mp4 in input_mp4s:
+        # テスト用MP4ファイルが存在するかをチェック（存在しなければスキップ）
+        if not mp4.exists():
+            pytest.skip(f"{mp4} が存在しないため、テストをスキップします")
 
-    assert not result.exists(), "WAVファイルが生成されていません"
+        result = extract_mp4_to_wav(mp4)
 
-    # テスト終了後に出力ファイルを削除
-    result.rmdir()
+        assert result.is_file(), f"WAVファイルが生成されていません: {result}"
+
+        # テスト終了後に生成されたWAVファイルを削除
+        result.unlink(missing_ok=True)
