@@ -1,5 +1,5 @@
 import os
-import shutil
+from pathlib import Path
 from numpy import fromstring, int16
 import speech_recognition as sr
 
@@ -88,15 +88,15 @@ def cut_wavs_str(outf_list):
 # mp4からwavへの変換から音声のテキスト変換まで
 def mp4_to_text(mp4f):
     # 出力ディレクトリ
-    shutil.rmtree('output/cut_wav/')
-    os.makedirs('output/cut_wav/', exist_ok=True)
+    (Path.cwd() / Path('output/cut_wav/')).mkdir(exist_ok=True)
+    print("処理を開始します\n音声ファイルへ変換")
 
     # 音声ファイルへの変換
     wav_file = extract_mp4_to_wav(mp4f)
-
+    print("音声ファイルの分割")
     # 音声ファイルの分割(デフォルト30秒)
     cut_wavs = cut_wav(wav_file)
-
+    print("テキスト変換")
     # 複数ファイルの音声のテキスト変換
     out_text = cut_wavs_str(cut_wavs)
 
@@ -104,7 +104,6 @@ def mp4_to_text(mp4f):
     mp4f_name = os.path.basename(mp4f)
     txt_file = 'output/' + mp4f_name.replace('.mp4', '.txt')
     print('テキスト出力')
-    print(txt_file)
-    f = open(txt_file, 'w')
-    f.write(out_text)
-    f.close()
+
+    with open(txt_file, "w") as f:
+        f.write(out_text)
