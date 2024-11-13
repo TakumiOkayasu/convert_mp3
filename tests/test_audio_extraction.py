@@ -11,10 +11,6 @@ def test_extract_audio_to_wav():
         pytest.skip("テスト用のMP4ファイルが存在しないため、テストをスキップします")
 
     for mp4 in input_mp4s:
-        # テスト用MP4ファイルが存在するかをチェック（存在しなければスキップ）
-        if not mp4.exists():
-            pytest.skip(f"{mp4} が存在しないため、テストをスキップします")
-
         result = extract_mp4_to_wav(mp4)
 
         assert result.is_file(), f"WAVファイルが生成されていません: {result}"
